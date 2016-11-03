@@ -1,0 +1,101 @@
+<!doctype html>
+<html ng-app='app5'>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js">
+  </script>
+  <script src = "js/exam5.js"></script>
+  <style>
+  table{
+    width: 400px;
+    text-align: left;
+    border: 2px solid black;
+    padding: 10px;
+  }
+  input.ng-dirty.ng-invalid{
+    border-color: red;
+  }
+  </style>
+</head>
+<body>
+
+  <div ng-controller="glistctrl">
+     <h3>Grocery List</h3>
+
+     <table>
+       <thead>
+         <tr>
+           <th>Item</th>
+           <th>Purchased</th>
+         </tr>
+       </thead>
+       <tr ng-repeat="grocery in groceries">
+         <td>{{grocery.item}}</td>
+         <td>
+           <input type="checkbox" ng-model="grocery.purchased"/>
+         </td>
+       </tr>
+     </table>
+
+<br>
+<label> New Item:
+  <input type="text" ng-model="newitem"/>
+</label>
+<button ng-click="additem(newitem)">add item</button>
+
+<h4>{{missingnewitemerror}}</h4>
+  </div>
+
+<div ng-controller="userctrl" >
+  <form name="userform" ng-submit="saveuser(userinfo)">
+    <label>first name: </label>
+    <input type="text" name="fname" ng-model='userinfo.fname' ng-required="true" ng-minlength="2" />
+
+    <span class="error-message" ng-show="userform.fname.$dirty && userform.fname.$error.required">Must Enter a first name</span>
+
+    <span class="error-message" ng-show="userform.fname.$dirty && userform.fname.$error.minlength">Must be a minimum of two characters</span>
+
+     <br>
+     <br>
+
+     <label>last name: </label>
+     <input type="text" name="lname" ng-model='userinfo.lname' ng-required="true" ng-minlength="2" />
+
+     <span class="error-message" ng-show="userform.lname.$dirty && userform.lname.$error.required">Must Enter a last name</span>
+
+     <span class="error-message" ng-show="userform.lname.$dirty && userform.lname.$error.minlength">Must be a minimum of two characters</span>
+
+    <br>
+    <br>
+
+    <label>Street: </label>
+
+    <input type="text" name="street" ng-model="userinfo.street" ng-required="true" ng-minlength="6" ng-pattern="/^(\d{3,})\s?(\w{0,5})\s([a-zA-Z]{2,30})\s([a-zA-Z]{2,15})\.?s?(\w{0,5})$/"/>
+    <span class="error-message" ng-show="userform.street.$dirty && userform.street.$invalid">Must enter a number, street, and street type (ex: 123 Main st.)</span>
+      <br>
+      <br>
+
+      <label>Subscribe: </label>
+      <input type="checkbox" name="subscribe" ng-model="userinfo.subscribe" ng-true-value="'subscribe'"
+      ng-false-value="'Don\'t Subscribe'"/>
+
+      <br><br>
+
+      <label>Delivery method:</label>
+      <select name="delivery" ng-model="userinfo.delivery" ng-required="true">
+        <option value="email">Email</option>
+        <option value="mail">Mail</option>
+      </select>
+
+      <br><br>
+
+      <input type="submit" value="save" ng-disabled="userform.$invalid" />
+
+      <ul>
+        <li ng-repeat="item in user">
+          {{'user: '+ item.fname+ " " + item.lname + " " + item.street + " " + item.subscribe + " " + item.delivery}}
+        </li>
+    </form>
+</div>
+
+</body>
+</html>

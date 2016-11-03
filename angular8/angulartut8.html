@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app="app8" ng-cloak>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js">
+  </script>
+  <script src = "js/exam8.js"></script>
+  <script src="js/filter.js"></script>
+</head>
+<body>
+
+  <div ng-contoller="mainctrl">
+    <label> Make Uppercase: </label>
+    <input type="text" ng-model="name" />
+    <p>Uppercase : {{name | uppercase}}</p>
+    <p>Lowercase : {{name | lowercase}}</p>
+    <label> Currency filter: </label>
+    <input type="text" ng-model="money" />
+    <p>Currency: {{money | currency}}</p>
+    <ul>
+      <li ng-repeat="s in students | filter: s.name | orderBy: 's.gpa'">
+        {{'Name: ' + s.name + ' : GPA: ' + s.gpa}}</li>
+    </ul>
+    <p>{{randomstr | limitTo:10}}</p>
+
+    <p>current date: {{currdate | date: 'medium'}}</p>
+
+    <p>
+      <ul>
+        <li ng-repeat="item in weather">
+          {{item.day + ' : ''}}{{item.rain | raining}}
+        </li>
+      </ul>
+    </p>
+  </div>
+</body>
+</html>

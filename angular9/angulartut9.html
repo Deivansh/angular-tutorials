@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app="app9">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js">
+  </script>
+  <script src = "js/exam9.js"></script>
+  <style>
+  .thick{
+    font-weight: bold;
+  }
+  </style>
+</head>
+<body>
+  <div ng-controller="mainctrl">
+
+    <ul jql-directive>
+      <li id="barry">Barry Bonds</li>
+      <ul>
+        <li>AVG: .298
+        <li> HR: 762
+        <li> OBP: .444
+      </ul>
+      <li id="hank">Hank Aaron</li>
+      <ul>
+        <li>AVG: .305
+        <li> HR: 755
+        <li> OBP: .374
+      </ul>
+      <li>Babe Ruth</li>
+      <ul>
+        <li>AVG: .342
+        <li> HR: 714
+        <li> OBP: .474
+      </ul>
+
+    </ul>
+
+    <h4>Children in list</h4>
+    <span id="childrenlist"></span><br><br>
+    
+  </div>
+</body>
+</html>
